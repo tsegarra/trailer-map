@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trailer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #0f1511;
+margin-top:0;
+margin-bottom:0;
+    }
+.ui {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+    .image-container {
+      position: relative;
+      width: 100%;
+      font-size: 0;
+      margin-bottom: 16px;
+    }
+    
+    .image-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-width: 100%;
+      max-height: 100vh;
+      height: auto;
+    }
+
+    .image-container img#image1 {
+      position: relative;
+    }
+
+    .slider-ui-container {
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .slider-container {
+      flex-grow: 1;
+      padding: 0 8px;
+    }
+    
+    #opacity-slider {
+      width: 100%;
+    }
+    .controls {
+      background-color: #d2d2d2;
+      padding: 1em;
+      border-radius: 4px;
+    }
+    @media(min-width:600px) {
+        .image-container {
+	margin-bottom:0;
+        }
+	.controls {
+	    position: absolute;
+	    top: 16px;
+	    left: 16px;
+	    width: calc(100% - 65px);
+	    opacity: 0.8;
+	    max-width: 310px;
+	}
+    }
+  </style>
+</head>
+<body>
+<div class="ui">
+  <div class="image-container">
+    <img src="img/2023.png" alt="Image 1" id="image1">
+    <img src="img/1994.png" alt="Image 2" id="image2">
+    <img src="img/guide.png" alt="Image 3" id="image3" style="display:none;">
+  </div>
+
+  <div class="controls">
+    <div class="slider-ui-container">
+      <label for="opacity-slider">1994</label>
+      <div class="slider-container">
+        <input type="range" id="opacity-slider" min="0" max="1" step="0.01" value="0">
+      </div>
+      <label for="opacity-slider">2023</label>
+    </div>
+  
+  <label for="visibility-checkbox">
+    <input type="checkbox" id="visibility-checkbox">Show guide</label>
+  </div>
+</div>
+
+  <script>
+    var image2 = document.getElementById("image2");
+    var image3 = document.getElementById("image3");
+    
+    var opacitySlider = document.getElementById("opacity-slider");
+    image2.style.opacity = 1 - opacitySlider.value;
+
+    opacitySlider.addEventListener("input", function() {
+      image2.style.opacity = 1 - opacitySlider.value;
+    });
+    
+    var visibilityCheckbox = document.getElementById("visibility-checkbox");
+    visibilityCheckbox.addEventListener("change", function() {
+      image3.style.display = visibilityCheckbox.checked ? "block" : "none";
+    });
+  </script>
+</body>
+</html>
